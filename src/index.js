@@ -1,12 +1,31 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from "react-dom";
+import YallImg, { Provider as YallProvider } from "./lib";
+import faker from 'faker';
+
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const imagesSources = [];
+for(var i=0; i<50; i++) {
+  imagesSources.push(faker.image.imageUrl());
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const Images = props => (
+  <div className="images-container">
+    {imagesSources.map(s => (
+      <YallImg src={s} />  
+    ))}
+  </div>
+); 
+
+
+const App = () => (
+  <div style={{ width: 640, margin: "15px auto" }}>
+    <h1>Hello React</h1>
+    <YallProvider>
+      <Images />
+    </YallProvider>
+  </div>
+);
+
+render(<App />, document.getElementById("root"));
