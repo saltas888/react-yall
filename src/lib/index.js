@@ -3,6 +3,7 @@ import * as Yall from './yall';
 
 const yallCtx = createContext();
 
+
 export class Provider extends React.Component {
   static contextType = yallCtx;
   constructor(props) {
@@ -10,32 +11,32 @@ export class Provider extends React.Component {
     
     this.push = this.push.bind(this);
     this.remove = this.remove.bind(this);
-
+    this.yallLoad = Yall.createYallLoad(this.props.options)
     this.state = {
       yallElements: []
     };
   }
 
   componentDidMount() {
+    const { options } = this.props;
     if (Yall.getEnv().intersectionObserverSupport === true) {
       this.intersectionListener = new IntersectionObserver(
         (entries, observer) => {
           entries.forEach(entry => {
-            if (entry.isIntersecting === true || entry.intersectionRatio > 0) {
+            if (entry.isIntersecting === true && entry.intersectionRatio > 0) {
               const element = entry.target;
-
-              if (Yall.options.idlyLoad === true) {
-                requestIdleCallback(() => Yall.yallLoad(element), Yall.idleCallbackOptions);
+              if (options.idlyLoad === true) {
+                requestIdleCallback(() => this.yallLoad(element), this.idleCallbackOptions);
               } else {
-                Yall.yallLoad(element);
+                this.yallLoad(element);
               }
 
-              element.classList.remove(Yall.options.lazyClass);
+              element.classList.remove(options.lazyClass);
               this.remove(element);
             }
           });
       }, {
-        rootMargin: `${Yall.options.threshold}px 0%`
+        rootMargin: `${options.threshold}px 0%`,
       });
       this.state.yallElements.forEach(lE => this.intersectionListener.observe(lE));
     }
@@ -44,6 +45,13 @@ export class Provider extends React.Component {
   componentWillUnmount() {
     if (this.intersectionListener) {
       this.intersectionListener.disconnect();
+    }
+  }
+
+  get idleCallbackOptions() {
+    const { options } = this.props;
+    return {
+      timeout: options.idleLoadTimeout
     }
   }
 
@@ -62,15 +70,13 @@ export class Provider extends React.Component {
   push(yallElement) {
     this.setState(prevState => ({
       yallElements: [...prevState.yallElements, yallElement]
-    }));
-    this.onAddElement(yallElement);
+    }), () => this.onAddElement(yallElement));
   }
 
   remove(yallElement) {
     this.setState(prevState => ({
       yallElements: prevState.yallElements.filter(e => e === yallElement)
-    }));
-    this.onRemoveElement(yallElement);
+    }), () => this.onRemoveElement(yallElement));
   }
 
   render() {
@@ -83,6 +89,10 @@ export class Provider extends React.Component {
     );
   }
 }
+
+Provider.defaultProps = {
+  options: Yall.defaultOptions
+};
 
 export default function YallImg({ dataSrc, ...props }) {
   const ref = useRef(null);

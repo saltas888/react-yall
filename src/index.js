@@ -10,10 +10,14 @@ for(var i=0; i<50; i++) {
   imagesSources.push(faker.image.imageUrl());
 }
 
+const PLACHOLDER_IMG_URL = 'https://dummyimage.com/600x400/000/fff.png&text=placeholder';
+
 const Images = props => (
   <div className="images-container">
-    {imagesSources.map(s => (
-      <YallImg src={s} />  
+    {imagesSources.map((s, id) => (
+      <div key={id} style={{height: 500, width: 500}}>
+        <YallImg width="100%" height="100%" src={PLACHOLDER_IMG_URL} dataSrc={s} />  
+      </div>
     ))}
   </div>
 ); 

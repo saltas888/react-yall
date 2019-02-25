@@ -1,30 +1,37 @@
-// When intersection observer is unavailable, this function is bound to scroll
-// (and other) event handlers to load images the "old" way.
+const sliceCall = arr => [].slice.call(arr);
+// Added because there was a number of patterns like this peppered throughout
+// the code. This just flips necessary data- attrs on an element
+const yallFlipDataAttrs = element => {
+  // Do `srcset` first. Doing `src` first can cause loading of additional
+  // assets on Safari (and possibly other webkit browsers).
+  if (element.getAttribute("data-srcset") !== null) {
+    element.setAttribute("srcset", element.getAttribute("data-srcset"));
+  }
+
+  if (element.getAttribute("data-src") !== null) {
+    element.setAttribute("src", element.getAttribute("data-src"));
+  }
+
+  if (element.getAttribute("data-poster") !== null) {
+    element.setAttribute("poster", element.getAttribute("data-poster"));
+  }
+};
 
 export const getEnv = () => ({
   intersectionObserverSupport: "IntersectionObserver" in window && "IntersectionObserverEntry" in window && "intersectionRatio" in window.IntersectionObserverEntry.prototype,
-  idleCallbackSupport: "requestIdleCallback" in window,
-  eventsToBind: [
-    [document, "scroll"],
-    [document, "touchmove"],
-    [window, "resize"],
-    [window, "orientationchange"]
-  ]
+  idleCallbackSupport: "requestIdleCallback" in window
 });
 
-export const options = {
+export const defaultOptions = {
   lazyClass: "lazy",
   lazyBackgroundClass: "lazy-bg",
   lazyBackgroundLoaded: "lazy-bg-loaded",
-  throttleTime: 200,
   idlyLoad: false,
   idleLoadTimeout: 100,
   threshold: 200,
-  observeChanges: false,
 };
 
-export const sliceCall = arr => [].slice.call(arr);
-export const yallLoad = element => {
+export const createYallLoad = options => element => {
   // Lazy load <img> elements
   if (element.tagName === "IMG") {
     const parentElement = element.parentNode;
@@ -61,26 +68,4 @@ export const yallLoad = element => {
     element.classList.remove(options.lazyBackgroundClass);
     element.classList.add(options.lazyBackgroundLoaded);
   }
-};
-
-// Added because there was a number of patterns like this peppered throughout
-// the code. This just flips necessary data- attrs on an element
-export const yallFlipDataAttrs = element => {
-  // Do `srcset` first. Doing `src` first can cause loading of additional
-  // assets on Safari (and possibly other webkit browsers).
-  if (element.getAttribute("data-srcset") !== null) {
-    element.setAttribute("srcset", element.getAttribute("data-srcset"));
-  }
-
-  if (element.getAttribute("data-src") !== null) {
-    element.setAttribute("src", element.getAttribute("data-src"));
-  }
-
-  if (element.getAttribute("data-poster") !== null) {
-    element.setAttribute("poster", element.getAttribute("data-poster"));
-  }
-};
-
-export const idleCallbackOptions = {
-  timeout: options.idleLoadTimeout
 };
