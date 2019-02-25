@@ -1,5 +1,6 @@
 {
   "name": "react-yall",
+  "description": "Lazy load images/videos/iframes A react wrapper for yall.js using React Context.",
   "version": "0.1.1",
   "peerDependencies": {
     "react": ">= 16.8.0",
