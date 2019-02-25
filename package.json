@@ -7,17 +7,23 @@
   },
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "files": [ "dist", "README.md" ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/saltas888/react-yall"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.3.4"
+  },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
+    "build": "webpack",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "update": "npm run build && npm version patch && npm publish"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -29,10 +35,17 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "babel-cli": "^6.26.0",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-object-rest-spread": "7.3.2",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/preset-env": "^7.3.1",
+    "babel-loader": "^8.0.5",
     "faker": "^4.1.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
   }
 }
