@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "peerDependencies": {
     "react": ">= 16.8.0",
-    "react-dom": ">= 16.8.0",
+    "react-dom": ">= 16.8.0"
   },
   "main": "dist/index.js",
   "module": "dist/index.js",
   "files": [ "dist", "README.md" ],
   "repository": {
     "type": "git",
-    "url": "URL_OF_YOUR_REPOSITORY"
+    "url": "https://github.com/saltas888/react-yall"
   },
   "dependencies": {},
   "scripts": {
