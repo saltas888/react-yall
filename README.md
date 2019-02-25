@@ -20,7 +20,7 @@ Run the following command:
 ### Provider props:
 `lazyClass`, `lazyBackgroundClass`, `lazyBackgroundLoaded`, `idlyLoad`, `idleLoadTimeout`, `threshold`
 
-## YallImg props:
+### YallImg props:
   `dataSrc`, other img tag props
 
 ### Simple usage:
