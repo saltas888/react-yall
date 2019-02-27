@@ -33,6 +33,7 @@ Run the following command:
     ...
   </YallProvider>
 ```
+See also src/index.js
 
 
 * Note: Tested only for images
