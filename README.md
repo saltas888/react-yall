@@ -7,6 +7,9 @@
 Lazy load images/videos/iframes
 A react wrapper for [yall.js](https://github.com/malchata/yall.js) using React Context.
 
+:star2: Using react props and not DOM to change the attributes
+
+
 -------------
 
 :exclamation: Works only with react >= 16.8.0.(The one with hooks)
@@ -18,7 +21,7 @@ Run the following command:
 ## Usage
 
 ### Provider props:
-`lazyClass`, `lazyBackgroundClass`, `lazyBackgroundLoaded`, `idlyLoad`, `idleLoadTimeout`, `threshold`
+`idlyLoad`, `idleLoadTimeout`, `threshold`
 
 ### YallImg props:
   `dataSrc`, other img tag props
@@ -26,14 +29,15 @@ Run the following command:
 ### Simple usage:
 
 ```js
-  import YallImg, { Provider as YallProvider } from 'react-yall';
+  import { Provider as YallProvider, YallImg } from 'react-yall';
   <YallProvider lazyClass="my-lazy-class">
     ...
     <YallImg src="/placeholder.png" dataSrc="/image.png" />
     ...
   </YallProvider>
 ```
-See also src/index.js
+See also src/index.js as example
 
 
-* Note: Tested only for images
+* Note: Tested only for image,picture,video tags
+* TODO: Add yall classes
