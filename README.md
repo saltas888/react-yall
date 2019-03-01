@@ -7,7 +7,7 @@
 Lazy load images/videos/iframes
 A react wrapper for [yall.js](https://github.com/malchata/yall.js) using React Context.
 
-:star2: Using react props and not DOM to change the attributes
+:star2: Using react props and not DOM to change elements attributes
 
 
 -------------
