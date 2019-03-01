@@ -20,7 +20,7 @@ Run the following command:
 ### Provider props:
 `lazyClass`, `lazyBackgroundClass`, `lazyBackgroundLoaded`, `idlyLoad`, `idleLoadTimeout`, `threshold`
 
-## YallImg props:
+### YallImg props:
   `dataSrc`, other img tag props
 
 ### Simple usage:
@@ -33,6 +33,7 @@ Run the following command:
     ...
   </YallProvider>
 ```
+See also src/index.js
 
 
 * Note: Tested only for images
