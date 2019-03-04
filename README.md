@@ -39,5 +39,5 @@ Run the following command:
 See also src/index.js as example
 
 
-* Note: Tested only for image,picture,video tags
+* Note: Not tested for iframes
 * TODO: Add yall classes
