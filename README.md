@@ -39,5 +39,6 @@ Run the following command:
 See also src/index.js as example
 
 
-* Note: Not tested for iframes
+* Note 1: Not tested for iframes
+* Note 2: Not supported browsers without IntersectionObserver support
 * TODO: Add yall classes
