@@ -7,7 +7,7 @@
 Lazy load images/videos/iframes
 A react wrapper for [yall.js](https://github.com/malchata/yall.js) using React Context.
 
-:star2: Using ONLY react props and not DOM to flip elements attributes
+:star2: Using ONLY react props and not DOM
 
 
 -------------
