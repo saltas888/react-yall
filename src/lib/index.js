@@ -121,7 +121,6 @@ export function YallImg({ dataSrc, src, ...props }) {
     return () => remove(ref.current);
   }, [ref.current !== null]);
 
-
   return (
     <img
       ref={ref}

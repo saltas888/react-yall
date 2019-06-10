@@ -6,10 +6,10 @@
     "react": ">= 16.8.0",
     "react-dom": ">= 16.8.0"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "build/index.js",
+  "module": "build/index.js",
   "files": [
-    "dist",
+    "build",
     "README.md"
   ],
   "repository": {
@@ -17,14 +17,17 @@
     "url": "https://github.com/saltas888/react-yall"
   },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.3.4"
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "gh-pages": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "webpack",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "update": "npm run build && npm version patch && npm publish"
+    "update": "npm run build && npm version patch && npm publish",
+    "predeploy": "yarn update",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
