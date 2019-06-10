@@ -3,7 +3,7 @@ module.exports = {
   entry: './src/lib',
   mode: 'production',
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
   },
   module: {
@@ -11,7 +11,7 @@ module.exports = {
       {
         test: /\.js$/,
         include: path.resolve(__dirname, 'src'),
-        exclude: /(node_modules|bower_components|build)/,
+        exclude: /(node_modules|bower_components|dist|build)/,
         use: {
           loader: 'babel-loader',
           options: {
