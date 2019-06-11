@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { render } from "react-dom";
 import { Provider as YallProvider, YallVideo, YallImg } from "./lib";
 import faker from 'faker';
@@ -48,14 +48,30 @@ const Videos = props => (
 ); 
 
 
-const App = () => (
-  <div style={{ width: 640, margin: "15px auto" }}>
-    <h1>Hello React</h1>
-    <YallProvider>
-      <Images />
-      <Videos />
-    </YallProvider>
-  </div>
-);
+const App = () =>  {
+  useEffect(() => {
+    document.title = 'React Yall Demo';
+  }, [])
+  const [view, setView] = useState('images');
+  return (
+    <div style={{ width: 640, margin: "15px auto" }}>
+      <h1>React Yall Demo</h1>
+      <nav>
+      <a href="#" onClick={e => {
+        setView('images');
+        e.preventDefault();
+      }}>Images</a>
+      <a style={{marginLeft: '50px'}} href="#" onClick={e => {
+        setView('videos');
+        e.preventDefault();
+      }}>Videos</a>
+      </nav>
+      <YallProvider>
+      {view === 'images' && <Images />}
+      {view === 'videos' && <Videos />}
+      </YallProvider>
+    </div>
+  );
+};
 
 render(<App />, document.getElementById("root"));

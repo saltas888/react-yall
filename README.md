@@ -12,6 +12,8 @@ A react wrapper for [yall.js](https://github.com/malchata/yall.js) using React C
 
 -------------
 
+# [DEMO](https://saltas888.github.io/react-yall/)
+
 :exclamation: Works only with react >= 16.8.0.(The one with hooks)
 
 ## Installation
