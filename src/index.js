@@ -29,7 +29,7 @@ const Images = props => (
 
 const videoSources = [];
 for(var i=0; i<10; i++) {
-  videoSources.push("https://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4");
+  videoSources.push("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4");
 }
 const Videos = props => (
   <div className="images-container">
